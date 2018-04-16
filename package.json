@@ -1,0 +1,41 @@
+{
+  "name": "k8s_node_starter",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
+  "main": "server.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "author": "Nick Chow",
+  "license": "ISC",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.4",
+    "prettier-eslint": "^8.8.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

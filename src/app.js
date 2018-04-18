@@ -1,8 +1,10 @@
 // Load express module with `require` directive
 const express = require('express');
+const os = require('os');
 const logger = require('./logger');
 
 const app = express();
+const hostname = os.hostname();
 
 const asyncMiddleware = fn => (req, res) => Promise.resolve(fn(req, res));
 
@@ -10,7 +12,7 @@ app.get(
   '/',
   asyncMiddleware(async (req, res) => {
     await res.send(
-      "<h1 style='text-align: center; font-size: 64px'>This is k8s Demo site from node.js project</h1>",
+      `<h1 style='text-align: center; font-size: 64px'>This is k8s Demo site on ${hostname}</h1>`,
     );
   }),
 );

@@ -19,13 +19,14 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "git add"
+      "git add",
+      "jest --bail --findRelatedTests"
     ]
   },
   "jest": {
     "projects": [
-      "<rootDir>/jest-test.config.js",
-      "<rootDir>/jest-eslint.config.js"
+      "<rootDir>/jest-test.config.json",
+      "<rootDir>/jest-eslint.config.json"
     ]
   },
   "devDependencies": {

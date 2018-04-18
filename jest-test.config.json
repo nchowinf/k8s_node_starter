@@ -1,0 +1,6 @@
+{
+  "displayName": "test",
+  "cacheDirectory": ".jest_cache_test",
+  "testMatch": ["<rootDir>/__test__/**/*.js"],
+  "testPathIgnorePatterns": ["/node_modules/"]
+}

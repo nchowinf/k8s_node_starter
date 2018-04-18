@@ -1,30 +1,38 @@
 pipeline:
-  publish_gcr:
-    image: plugins/gcr
-    # registry: gcr.io
-    repo: rw-k8s/node-starter
-    build_args:
-     - NPM_TOKEN=${NPM_TOKEN}
-    auto_tag: true
-    tags: latest
-    secrets: [google_credentials]
-    when:
-      branch: [master]
-      event: [push, tag, deployment]
+  build:
+    image: node:8-alpine
+    commands:
+      - npm install
+      - npm run test:lint
+      - npm run test:js
+      - npm run test:ci # generate reports
 
-  helm_deploy_dev:
-    image: quay.io/ipedrazas/drone-helm:latest
-    skip_tls_verify: true
-    chart: ./helm/node-starter
-    release: node
-    values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
-    values_files: ["./helm/node-starter/values.aws.dev.yaml"]
-    namespace: test
-    prefix: DEV
-    secrets: [ dev_api_server, dev_kubernetes_token ]
-    when:
-      branch: [develop]
-      event: [push, tag, deployment]
+  # publish_gcr:
+  #   image: plugins/gcr
+  #   # registry: gcr.io
+  #   repo: rw-k8s/node-starter
+  #   build_args:
+  #    - NPM_TOKEN=${NPM_TOKEN}
+  #   auto_tag: true
+  #   tags: [latest, '${DRONE_TAG}']
+  #   secrets: [google_credentials]
+  #   when:
+  #     branch: [master]
+  #     event: [push, tag, deployment]
+
+  # helm_deploy_dev:
+  #   image: quay.io/ipedrazas/drone-helm:latest
+  #   skip_tls_verify: true
+  #   chart: ./helm/node-starter
+  #   release: node
+  #   values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
+  #   values_files: ["./helm/node-starter/values.aws.dev.yaml"]
+  #   namespace: test
+  #   prefix: DEV
+  #   secrets: [ dev_api_server, dev_kubernetes_token ]
+  #   when:
+  #     branch: [develop]
+  #     event: [push, tag, deployment]
 
   slack:
     image: plugins/slack

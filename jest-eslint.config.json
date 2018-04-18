@@ -1,0 +1,8 @@
+ {
+  "runner": "jest-runner-eslint",
+  "displayName": "lint",
+  "testMatch": ["<rootDir>/**/*.js"],
+  "collectCoverage": false,
+  "cacheDirectory": ".jest_cache_eslint",
+  "testPathIgnorePatterns": ["/node_modules/"]
+}

@@ -18,7 +18,7 @@ pipeline:
     secrets: [google_credentials]
     when:
       ref: [refs/tags/*, refs/heads/master]
-      event: [tag, deployment]
+      event: [push, tag, deployment]
 
   # helm_deploy_dev:
   #   image: quay.io/ipedrazas/drone-helm:latest

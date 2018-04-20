@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: node
-  tag: 8-alpine
+  repository: gcr.io/rw-k8s/node-starter
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:

@@ -7,18 +7,18 @@ pipeline:
       - npm run test:js
       - npm run test:ci # generate reports
 
-  # publish_gcr:
-  #   image: plugins/gcr
-  #   # registry: gcr.io
-  #   repo: rw-k8s/node-starter
-  #   build_args:
-  #    - NPM_TOKEN=${NPM_TOKEN}
-  #   auto_tag: true
-  #   tags: [latest, '${DRONE_TAG}']
-  #   secrets: [google_credentials]
-  #   when:
-  #     branch: [master]
-  #     event: [push, tag, deployment]
+  publish_gcr:
+    image: plugins/gcr
+    registry: gcr.io
+    repo: rw-k8s/node-starter
+    build_args:
+     - NPM_TOKEN=${NPM_TOKEN}
+    auto_tag: true
+    # tags: [latest, '${DRONE_TAG}']
+    secrets: [google_credentials]
+    when:
+      branch: [master]
+      event: [tag, deployment]
 
   # helm_deploy_dev:
   #   image: quay.io/ipedrazas/drone-helm:latest
@@ -38,14 +38,14 @@ pipeline:
     image: plugins/slack
     secrets: [ slack_webhook ]
     channel: iops
-    username: drone
+    username: drone[Github]
     icon_url: 'https://c1.staticflickr.com/5/4236/34957940160_435d83114f_z.jpg'
     template: >
-      Helm Chart: *<https://github.com/raywhite/office-sites/{{ repo.owner }}/repos/{{ repo.name }}| {{ repo.name }} >*
-      (<https://github.com/raywhite/office-sites/{{ repo.owner }}/repos/{{ repo.name }}/commits/{{ build.commit }}|{{ build.branch }}:{{ truncate build.commit 11 }}>)
+      Helm Chart: *<https://github.com/{{ repo.owner }}/{{ repo.name }}| {{ repo.name }} >*
+      (<https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ build.branch }}:{{ truncate build.commit 11 }}>)
       release-{{ build.number }} was deployed by {{ build.author }}
       with status: {{ build.status }}. <{{ build.link }} | See details.>
     when:
       status: [ success, failure ]
 
-branches: [ master, develop ]
+branches: [ master, develop, release/* ]

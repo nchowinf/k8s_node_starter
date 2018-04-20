@@ -17,7 +17,7 @@ pipeline:
     # tags: [latest, '${DRONE_TAG}']
     secrets: [google_credentials]
     when:
-      branch: [master]
+      ref: [refs/tags/*, refs/heads/master]
       event: [tag, deployment]
 
   # helm_deploy_dev:
@@ -48,4 +48,4 @@ pipeline:
     when:
       status: [ success, failure ]
 
-branches: [ master, develop, release/* ]
+# branches: [ master, develop, release/*,  ]

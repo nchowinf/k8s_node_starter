@@ -15,7 +15,7 @@ pipeline:
     tags: [latest, '${DRONE_TAG}', '${DRONE_COMMIT_SHA:0:7}']
     secrets: [google_credentials]
     when:
-      event: tag
+      event: [push, tag]
 
   # helm_deploy_dev:
   #   image: quay.io/ipedrazas/drone-helm:latest
@@ -44,5 +44,3 @@ pipeline:
       with status: {{ build.status }}. <{{ build.link }} | See details.>
     when:
       status: [ success, failure ]
-
-# branches: [ master, develop, release/*,  ]

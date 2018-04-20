@@ -3,8 +3,8 @@ pipeline:
     image: node:8-alpine
     commands:
       - npm install
-      - npm run test:lint
-      - npm run test:js
+      # - npm run test:lint
+      # - npm run test:js
       - npm run test:ci # generate reports
 
   publish_gcr:

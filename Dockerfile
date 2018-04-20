@@ -30,7 +30,7 @@ WORKDIR /home/node/office_sites
 COPY package*.json ./
 
 # Access npm private packages
-ARG NPM_TOKEN = ''
+ARG NPM_TOKEN
 RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 
 # RUN npm install

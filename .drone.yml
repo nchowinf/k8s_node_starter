@@ -9,7 +9,7 @@ pipeline:
 
   publish_gcr:
     image: plugins/gcr
-    # registry: gcr.io
+    registry: gcr.io
     repo: rw-k8s/node-starter
     build_args:
      - NPM_TOKEN=${NPM_TOKEN}

@@ -3,8 +3,6 @@ pipeline:
     image: node:8-alpine
     commands:
       - npm install
-      # - npm run test:lint
-      # - npm run test:js
       - npm run test:ci # generate reports
 
   publish_gcr:
@@ -14,11 +12,11 @@ pipeline:
     build_args:
      - NPM_TOKEN=${NPM_TOKEN}
     auto_tag: true
-    # tags: [latest, '${DRONE_TAG}']
+    tags: [latest, '${DRONE_TAG}', '${DRONE_COMMIT_SHA:0:7}']
     secrets: [google_credentials]
     when:
-      # ref: [refs/tags/*]
-      event: [tag, deployment]
+      ref: [refs/tags/*]
+      event: [push, tag, deployment]
 
   # helm_deploy_dev:
   #   image: quay.io/ipedrazas/drone-helm:latest

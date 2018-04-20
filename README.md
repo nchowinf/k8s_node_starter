@@ -69,6 +69,12 @@ $ drone registry add \
     --hostname gcr.io \
     --username _json_key \
     --password @/absolute/path/to/keyfile.json
+
+$ drone secret add \
+    -repository nchowinf/k8s_node_starter \
+    -name google_credentials \
+    -image plugins/gcr \
+    -value @/absolute/path/to/keyfile.json
 ```
 
 ### Docker commands

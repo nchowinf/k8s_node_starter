@@ -7,7 +7,6 @@ pipeline:
 
   publish_gcr:
     image: plugins/gcr
-    registry: gcr.io
     repo: rw-k8s/node-starter
     build_args:
      - NPM_TOKEN=${NPM_TOKEN}
@@ -15,7 +14,7 @@ pipeline:
     tags: [latest, '${DRONE_TAG}', '${DRONE_COMMIT_SHA:0:7}']
     secrets: [google_credentials]
     when:
-      event: [push, tag]
+      event: [tag]
 
   # helm_deploy_dev:
   #   image: quay.io/ipedrazas/drone-helm:latest

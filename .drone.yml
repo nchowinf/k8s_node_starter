@@ -41,7 +41,7 @@ pipeline:
     username: drone[Github]
     icon_url: 'https://c1.staticflickr.com/5/4236/34957940160_435d83114f_z.jpg'
     template: >
-      Helm Chart: *<https://github.com/{{ repo.owner }}/{{ repo.name }}| {{ repo.name }} >*
+      Project: *<https://github.com/{{ repo.owner }}/{{ repo.name }}| {{ repo.name }} >*
       (<https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ build.branch }}:{{ truncate build.commit 11 }}>)
       release-{{ build.number }} was deployed by {{ build.author }}
       with status: {{ build.status }}. <{{ build.link }} | See details.>

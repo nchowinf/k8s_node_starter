@@ -17,7 +17,7 @@ pipeline:
     # tags: [latest, '${DRONE_TAG}']
     secrets: [google_credentials]
     when:
-      ref: [refs/tags/*, refs/heads/master]
+      ref: [refs/tags/*]
       event: [push, tag, deployment]
 
   # helm_deploy_dev:

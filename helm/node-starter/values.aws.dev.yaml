@@ -11,7 +11,7 @@ image:
   pullSecrets: gcr-creds-ro
   extraEnvs:
     - name: PORT
-      value: '80'
+      value: '3000'
 
 service:
   type: ClusterIP

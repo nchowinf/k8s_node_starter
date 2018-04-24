@@ -6,7 +6,16 @@ const logger = require('./logger');
 const app = express();
 const hostname = os.hostname();
 
-const asyncMiddleware = fn => (req, res) => Promise.resolve(fn(req, res));
+// const asyncMiddleware = fn => (req, res, next) =>
+//   Promise.resolve(fn(req, res, next)).catch(next);
+
+const asyncMiddleware = fn => async (req, res, next) => {
+  try {
+    await fn(req, res, next);
+  } catch (err) {
+    next(err);
+  }
+};
 
 app.get(
   '/',

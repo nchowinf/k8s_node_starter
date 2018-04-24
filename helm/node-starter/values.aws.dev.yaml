@@ -8,6 +8,9 @@ image:
   repository: gcr.io/rw-k8s/node-starter
   tag: latest
   pullPolicy: IfNotPresent
+  pullSecrets: gcr-creds-ro
+  extraEnvs:
+    PORT: 80
 
 service:
   type: ClusterIP

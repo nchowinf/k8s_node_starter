@@ -49,3 +49,7 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+  {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecrets }}
+  {{- end }}

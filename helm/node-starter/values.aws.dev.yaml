@@ -10,7 +10,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: gcr-creds-ro
   extraEnvs:
-    PORT: 80
+    - name: PORT
+      value: '80'
 
 service:
   type: ClusterIP

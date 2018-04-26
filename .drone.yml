@@ -11,7 +11,7 @@ pipeline:
     build_args:
      - NPM_TOKEN=${NPM_TOKEN}
     auto_tag: true
-    tags: [latest, '${DRONE_TAG}', '${DRONE_COMMIT_SHA:0:7}']
+    # tags: [latest, '${DRONE_TAG}', '${DRONE_COMMIT_SHA:0:7}']
     secrets: [google_credentials]
     when:
       event: [tag]

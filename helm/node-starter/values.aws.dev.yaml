@@ -26,11 +26,12 @@ ingress:
     ingress.kubernetes.io/force-ssl-redirect: "true"
   path: /
   hosts:
-    - node.dk.dynamics.net
+    - k8snode.dk.dynamics.net
   tls:
-    - secretName: node.dk.dynamics.net
+    - secretName: k8snode.dk.dynamics.net
       hosts:
-       - node.dk.dynamics.net
+       - k8snode.dk.dynamics.net
+       - k8snode.dynamics.net
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

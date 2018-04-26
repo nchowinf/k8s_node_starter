@@ -16,19 +16,18 @@ pipeline:
     when:
       event: [tag]
 
-  # helm_deploy_dev:
-  #   image: quay.io/ipedrazas/drone-helm:latest
-  #   skip_tls_verify: true
-  #   chart: ./helm/node-starter
-  #   release: node
-  #   values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
-  #   values_files: ["./helm/node-starter/values.aws.dev.yaml"]
-  #   namespace: test
-  #   prefix: DEV
-  #   secrets: [ dev_api_server, dev_kubernetes_token ]
-  #   when:
-  #     branch: [develop]
-  #     event: [push, tag, deployment]
+  helm_deploy_aws:
+    image: quay.io/ipedrazas/drone-helm:latest
+    skip_tls_verify: true
+    chart: ./helm/node-starter
+    release: node
+    values: image.tag=${DRONE_TAG}
+    values_files: ["./helm/node-starter/values.aws.dev.yaml"]
+    namespace: test
+    prefix: AWS
+    secrets: [ aws_api_server, aws_kubernetes_token ]
+    when:
+      event: [tag]
 
   slack:
     image: plugins/slack

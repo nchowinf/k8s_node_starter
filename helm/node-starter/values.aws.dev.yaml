@@ -20,13 +20,14 @@ service:
 ingress:
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: elb
     kubernetes.io/tls-acme: "true"
     dns.alpha.kubernetes.io/external: "true"
     ingress.kubernetes.io/force-ssl-redirect: "true"
   path: /
   hosts:
     - k8snode.dk.dynamics.net
+    - k8snode.dynamics.net
   tls:
     - secretName: k8snode.dk.dynamics.net
       hosts:
